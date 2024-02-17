@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChatbotWrapper, ChatbotContainer, MessageContainer, Message, UserInput, MessageInput, SendButton, DiceButton, SendIcon, DiceIcon } from './ChatbotStyles';
 import { questionPrompts } from '../../constants/constants';
-import { OPENAI_API_KEY, OPENAI_ASS_ID } from "../../../env.js"
+import { REACT_APP_OPENAI_API_KEY, REACT_APP_OPENAI_ASSISTANT_ID } from "../../../env.js"
 import OpenAI from "openai";
 
 let promptIndex = 0;
 
 const Chatbot = () => {
-
 
     // add first message
     const [messages, setMessages] = useState([
@@ -16,9 +15,8 @@ const Chatbot = () => {
 
     const [newMessage, setNewMessage] = useState('');
     const chatboxRef = useRef(null);
-
     const openai = new OpenAI({
-        apiKey: OPENAI_API_KEY,
+        apiKey: REACT_APP_OPENAI_API_KEY,
         dangerouslyAllowBrowser: true
     });
 
@@ -43,7 +41,7 @@ const Chatbot = () => {
             });
 
             const run = await openai.beta.threads.runs.create(thread.id, {
-                assistant_id: OPENAI_ASS_ID
+                assistant_id: REACT_APP_OPENAI_ASSISTANT_ID
             });
 
             let runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);

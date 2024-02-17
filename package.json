@@ -1,11 +1,14 @@
 {
+  "homepage": "https://ItsMeShane.github.io/portfolio",
   "name": "portfolio_nextjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start"
+    "start": "next start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "dotenv": "^16.4.1",
@@ -16,5 +19,8 @@
     "react-icons": "^4.2.0",
     "styled-components": "^5.3.0",
     "styled-normalize": "^8.0.7"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
